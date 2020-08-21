@@ -12,7 +12,7 @@ Games:
         Flappy_bird with AI and normal gameplay (in progress)
     
     Pure Python:
-        Tic Tac Toe
+        Pokemon, Tamagochi, Tic Tac Toe 
 
 Different folders contain different apps.
 <br>
