@@ -21,18 +21,17 @@ class Cube(object):
         self.position = (self.position[0] + self.dirnx, self.position[1] + self.dirny)
 
     def draw(self, surface, eyes=False):
-        
         distance = self.width // self.rows
         i = self.position[0]
         j = self.position[1]
-                             
-        pygame.draw.rect(surface, self.color, (i*distance+1, j*distance+1, distance-2, distance-2))
+
+        pygame.draw.rect(surface, self.color, (i * distance + 1, j * distance + 1, distance - 2, distance - 2))
 
         if eyes:
             centre = distance // 2
             radius = 3
-            circle_middle = (i*distance + centre - radius, j*distance + 8)
-            circle_middle2 = (i*distance + distance - radius*2, j*distance + 8)
+            circle_middle = (i * distance + centre - radius, j * distance + 8)
+            circle_middle2 = (i * distance + distance - radius * 2, j * distance + 8)
             pygame.draw.circle(surface, (0, 0, 0), circle_middle, radius)
             pygame.draw.circle(surface, (0, 0, 0), circle_middle2, radius)
 
@@ -62,7 +61,7 @@ class Snake(object):
                 elif keys[pygame.K_RIGHT]:
                     self.dirnx = 1
                     self.dirny = 0
-                    self.turns[self.head.position[:]] = [self.dirnx, self.dirny]    
+                    self.turns[self.head.position[:]] = [self.dirnx, self.dirny]
                 elif keys[pygame.K_DOWN]:
                     self.dirnx = 0
                     self.dirny = 1
@@ -77,17 +76,17 @@ class Snake(object):
             if p in self.turns:
                 turn = self.turns[p]
                 c.move(turn[0], turn[1])
-                if i == len(self.body)-1:
+                if i == len(self.body) - 1:
                     self.turns.pop(p)
             else:
                 if c.dirnx == -1 and c.position[0] <= 0:
-                    c.position = (c.rows-1, c.position[1])
-                elif c.dirnx == 1 and c.position[0] >= c.rows-1:
+                    c.position = (c.rows - 1, c.position[1])
+                elif c.dirnx == 1 and c.position[0] >= c.rows - 1:
                     c.position = (0, c.position[1])
-                elif c.dirny == 1 and c.position[1] >= c.rows-1:
+                elif c.dirny == 1 and c.position[1] >= c.rows - 1:
                     c.position = (c.position[0], 0)
                 elif c.dirny == -1 and c.position[1] <= 0:
-                    c.position = (c.position[0], c.rows-1)
+                    c.position = (c.position[0], c.rows - 1)
                 else:
                     c.move(c.dirnx, c.dirny)
 
@@ -97,7 +96,7 @@ class Snake(object):
         self.body.append(self.head)
         self.turns = {}
         self.dirnx = 0
-        self. dirny = 1
+        self.dirny = 1
 
     def add_cube(self):
         tail = self.body[-1]
@@ -105,13 +104,13 @@ class Snake(object):
         dy = tail.dirny
 
         if dx == 1 and dy == 0:
-            self.body.append(Cube((tail.position[0]-1, tail.position[1])))
+            self.body.append(Cube((tail.position[0] - 1, tail.position[1])))
         elif dx == -1 and dy == 0:
-            self.body.append(Cube((tail.position[0]+1, tail.position[1])))
+            self.body.append(Cube((tail.position[0] + 1, tail.position[1])))
         elif dx == 0 and dy == 1:
-            self.body.append(Cube((tail.position[0], tail.position[1]-1)))
+            self.body.append(Cube((tail.position[0], tail.position[1] - 1)))
         elif dx == 0 and dy == -1:
-            self.body.append(Cube((tail.position[0], tail.position[1]+1)))
+            self.body.append(Cube((tail.position[0], tail.position[1] + 1)))
 
         self.body[-1].dirnx = dx
         self.body[-1].dirny = dy
@@ -124,7 +123,7 @@ class Snake(object):
                 c.draw(surface)
 
 
-def draw_grid(width,  rows, surface):
+def draw_grid(width, rows, surface):
     size_betwen = width // rows
 
     x = 0
@@ -138,7 +137,7 @@ def draw_grid(width,  rows, surface):
 
 
 def redraw_window(surface):
-    global rows, width, s, snack 
+    global rows, width, s, snack
     surface.fill((0, 0, 0))
     s.draw(surface)
     snack.draw(surface)
@@ -169,7 +168,7 @@ def message_box(subject, content):
         pass
 
 
-def main():                          
+def main():
     global width, rows, s, snack
     width = 500
     rows = 20
@@ -188,12 +187,12 @@ def main():
             snack = Cube(random_snack(rows, s), color=(0, 255, 0))
 
         for x in range(len(s.body)):
-            if s.body[x].position in list(map(lambda z: z.position, s.body[x+1:])):
+            if s.body[x].position in list(map(lambda z: z.position, s.body[x + 1:])):
                 print('Score:', len(s.body))
                 message_box('You lost', 'try agian')
-                s.reset((10,10))
+                s.reset((10, 10))
                 break
-                     
+
         redraw_window(surface=win)
 
 

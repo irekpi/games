@@ -7,6 +7,7 @@ import neat
 import time
 import os
 import random
+
 pygame.font.init()
 
 WIN_WIDTH = 500
@@ -50,7 +51,7 @@ class Bird:
     def move(self):
         self.tick_count += 1
 
-        d = self.vel*self.tick_count + 1.5*self.tick_count**2
+        d = self.vel * self.tick_count + 1.5 * self.tick_count ** 2
 
         if d >= 16:
             d = 16
@@ -71,19 +72,19 @@ class Bird:
 
         if self.img_count < self.ANIMATION_TIME:
             self.img = self.IMGS[0]
-        elif self.img_count < self.ANIMATION_TIME*2:
+        elif self.img_count < self.ANIMATION_TIME * 2:
             self.img = self.IMGS[1]
-        elif self.img_count < self.ANIMATION_TIME*3:
+        elif self.img_count < self.ANIMATION_TIME * 3:
             self.img = self.IMGS[2]
-        elif self.img_count < self.ANIMATION_TIME*4:
+        elif self.img_count < self.ANIMATION_TIME * 4:
             self.img = self.IMGS[1]
-        elif self.img_count < self.ANIMATION_TIME*4 + 1:
+        elif self.img_count < self.ANIMATION_TIME * 4 + 1:
             self.img = self.IMGS[0]
             self.img_count = 0
 
         if self.tilt <= -80:
             self.img = self.IMGS[0]
-            self.img_count = self.ANIMATION_TIME*2
+            self.img_count = self.ANIMATION_TIME * 2
 
         blit_rotate_center(win, self.img, (self.x, self.y), self.tilt)
 
@@ -97,7 +98,7 @@ class Pipe:
 
     def __init__(self, x):
         self.x = x
-        self. height = 0
+        self.height = 0
         self.top = 0
         self.bottom = 0
         self.PIPE_TOP = pygame.transform.flip(PIPE_IMG, False, True)
@@ -167,7 +168,6 @@ def blit_rotate_center(surf, image, topleft, angle):
 
 
 def draw_window(win, birds, pipes, base, score, gen):
-
     win.blit(BG_IMG, (0, 0))
     for pipe in pipes:
         pipe.draw(win)
@@ -178,7 +178,7 @@ def draw_window(win, birds, pipes, base, score, gen):
     score_label = STAT_FONT.render('Stats:' + str(score), 1, (255, 255, 255))
     win.blit(score_label, (WIN_WIDTH - 10 - score_label.get_width(), 10))
 
-    gen_label = STAT_FONT.render('Generation:' + str(gen-1), 1, (255, 255, 255))
+    gen_label = STAT_FONT.render('Generation:' + str(gen - 1), 1, (255, 255, 255))
     win.blit(gen_label, (10, 10))
     pygame.display.update()
 
@@ -277,7 +277,7 @@ def run(config_file):
     winner = p.run(main, 50)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'config-feedforward.txt')
     run(config_path)

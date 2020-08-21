@@ -2,11 +2,11 @@ import turtle
 import random
 import math
 
-
 win = turtle.Screen()
 win.bgcolor('red')
 win.title('Simple Turtle game which uses Classes')
 win.bgpic('kylo.gif')
+
 
 class GameScore(turtle.Turtle):
 
@@ -26,7 +26,6 @@ class GameScore(turtle.Turtle):
     def change_score(self, points):
         self.score += points
         self.update_score()
-
 
 
 class Border(turtle.Turtle):
@@ -102,13 +101,12 @@ class Goal(turtle.Turtle):
 def is_collision(p1, p2):
     a = p1.xcor() - p2.xcor()
     b = p1.ycor() - p2.ycor()
-    distance = math.sqrt((a**2)+(b**2))
+    distance = math.sqrt((a ** 2) + (b ** 2))
 
     if distance < 20:
         return True
     else:
         return False
-
 
 
 # class create instance and border
@@ -142,4 +140,3 @@ while True:
         if is_collision(player, goal):
             goal.jump()
             game_score.change_score(1)
-

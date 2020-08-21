@@ -6,11 +6,11 @@ class Board:
         self.spots = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
     def display(self):
-        print(' {} | {} | {}'. format(self.spots[1], self.spots[2], self.spots[3]))
+        print(' {} | {} | {}'.format(self.spots[1], self.spots[2], self.spots[3]))
         print('-----------')
-        print(' {} | {} | {}'. format(self.spots[4], self.spots[5], self.spots[6]))
+        print(' {} | {} | {}'.format(self.spots[4], self.spots[5], self.spots[6]))
         print('-----------')
-        print(' {} | {} | {}'. format(self.spots[7], self.spots[8], self.spots[9]))
+        print(' {} | {} | {}'.format(self.spots[7], self.spots[8], self.spots[9]))
 
     def update(self, spot_no, value):
         if self.spots[spot_no] == ' ':
@@ -46,7 +46,6 @@ class Board:
             return True
         else:
             return False
-
 
 
 board = Board()
@@ -111,10 +110,3 @@ while True:
             continue
         else:
             break
-
-
-
-
-
-
-

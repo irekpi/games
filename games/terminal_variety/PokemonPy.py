@@ -222,6 +222,7 @@ class Game:
             if player.is_alive:
                 self.player_attack(move, player, computer)
 
+
 print('Welcome. There You have Pokemon game')
 input('Press Enter to start playing')
 
@@ -230,7 +231,7 @@ player_main = True
 while player_main:
     game = Game()
     player = game.choose_pokemon()
-    print('Gratz! You choose {} as your first pokemon. \n Now press Enter to play' .format(player.name))
+    print('Gratz! You choose {} as your first pokemon. \n Now press Enter to play'.format(player.name))
     while player.is_alive:
         computer = game.create_pokemnon()
         print('A wild pokemon {} approached'.format(computer.name))
@@ -244,12 +245,8 @@ while player_main:
                 print('--------------------------------')
         if player.is_alive:
             game.battles_won += 1
-    print('Poor {} has fainted but won {} battles'. format(player.name, game.battles_won))
+    print('Poor {} has fainted but won {} battles'.format(player.name, game.battles_won))
     choice = input('Do you want to play more?y or n').upper()
     if choice != 'Y':
         player_main = False
         print('Thanks for playing')
-
-        
-    
-

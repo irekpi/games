@@ -2,7 +2,6 @@
 import turtle
 import os
 
-
 wn = turtle.Screen()
 wn.title("Pong game")
 wn.bgcolor('black')
@@ -49,21 +48,25 @@ ball.goto(0, 0)
 ball.dx = 0.1
 ball.dy = 0.1
 
+
 # functions
 def paddle_a_up():
     y = paddle_a.ycor()
     y += 20
     paddle_a.sety(y)
 
+
 def paddle_a_down():
     y = paddle_a.ycor()
     y -= 20
     paddle_a.sety(y)
 
+
 def paddle_b_up():
     y = paddle_b.ycor()
     y += 20
     paddle_b.sety(y)
+
 
 def paddle_b_down():
     y = paddle_b.ycor()
@@ -113,12 +116,12 @@ while True:
         pen.write('Player A: {}, Player B: {}'.format(score_a, score_b), align='center', font=('Arial', 8, ' normal'))
 
     # interaction with paddles
-    if (ball.xcor() > 340  and ball.xcor() < 350)\
-            and (ball.ycor() <paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 50):
+    if (ball.xcor() > 340 and ball.xcor() < 350) \
+            and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 50):
         ball.dx *= -1
         os.system('aplay bounce.wav&')
 
-    if (ball.xcor() < -340  and ball.xcor() > -350)\
-            and (ball.ycor() <paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 50):
+    if (ball.xcor() < -340 and ball.xcor() > -350) \
+            and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 50):
         ball.dx *= -1
         os.system('aplay bounce.wav&')

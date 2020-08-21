@@ -110,7 +110,7 @@ class Missile(Sprite):
     def fire(self):
         if self.status == 'ready':
             os.system('aplay fire.wav&')
-            self.goto(player.xcor(), player. ycor())
+            self.goto(player.xcor(), player.ycor())
             self.setheading(player.heading())
             self.status = 'firing'
 
@@ -122,7 +122,7 @@ class Missile(Sprite):
             self.fd(self.speed)
         # reload
         if self.xcor() < -290 or self.xcor() > 290 or \
-            self.ycor() > 290 or self.ycor() < -290:
+                self.ycor() > 290 or self.ycor() < -290:
             self.status = 'ready'
 
 
@@ -180,7 +180,6 @@ class Game:
 game = Game()
 game.draw_border()
 game.show_status()
-
 
 # players
 player = Player('triangle', 'white', 0, 0)
@@ -245,6 +244,3 @@ while True:
             game.show_status()
     for particle in particles:
         particle.move()
-
-
-
